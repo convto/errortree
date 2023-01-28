@@ -4,6 +4,20 @@ import (
 	"reflect"
 )
 
+// Scan finds all matches to target in err's tree, always traverses all trees even
+// if target is found during the search, if no matches are found, it returns nil.
+//
+// The tree consists of err itself, followed by the errors obtained by repeatedly
+// calling Unwrap. When err wraps multiple errors, Scan examines err followed by a
+// depth-first traversal of its children.
+//
+// An error matches target if the err's concrete value is assignable to the value
+// pointed to by target.
+//
+// Scan panics if target is not implements error, or to any interface type.
+//
+// Note `target` parameter accepts an interface, so setting `interface{}` or `any`
+// to target will match all nodes!
 func Scan[T any](err error, target T) (matched []T) {
 	if err == nil {
 		return nil
