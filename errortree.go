@@ -1,3 +1,8 @@
+// Package errortree provides multiple-error matching considering the tree structure
+// of errors in Go1.20 and later.
+//
+// This package uses generics to keep the type info from the caller, and returns the
+// search result with an arbitrary concrete type.
 package errortree
 
 import (

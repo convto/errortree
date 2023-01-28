@@ -1,4 +1,6 @@
 # errortree
+[![Go Reference](https://pkg.go.dev/badge/github.com/convto/errortree.svg)](https://pkg.go.dev/github.com/convto/errortree) [![Go Report Card](https://goreportcard.com/badge/github.com/convto/bit)](https://goreportcard.com/report/github.com/convto/errortree) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Package errortree provides multiple-error matching considering the tree structure of errors in Go1.20 and later.
 
 This package uses generics to keep the type info from the caller, and returns the search result with an arbitrary concrete type.
