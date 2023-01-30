@@ -70,6 +70,21 @@ func ExactlyIs(err error, target error) bool {
 // Scan finds all matches to target in err's tree, always traverses all trees even
 // if target is found during the search, if no matches are found, it returns nil.
 //
+// For example, execute Scan(err, target) on the following tree
+//
+//	err
+//	├── targetA(assignable to `target`)
+//	├── wrapErr
+//	│   └── multiErr
+//	│       ├── targetB(assignable to `target`)
+//	│       └── targetC(assignable to `target`)
+//	└── multiErr
+//	    ├── wrapErr
+//	    │   └── targetD(assignable to `target`)
+//	    └── targetE(assignable to `target`)
+//
+// It returns `[]target{targetA, targetB, targetC, targetD, targetE}`.
+//
 // The tree consists of err itself, followed by the errors obtained by repeatedly
 // calling Unwrap. When err wraps multiple errors, Scan examines err followed by a
 // depth-first traversal of its children.
@@ -79,8 +94,8 @@ func ExactlyIs(err error, target error) bool {
 //
 // Scan panics if target is not implements error, or to any interface type.
 //
-// Note `target` parameter accepts an interface, so setting `interface{}` or `any`
-// to target will match all nodes!
+// Note target parameter accepts an interface, so setting `interface{}` or `any` to
+// target will match all nodes!
 func Scan[T any](err error, target T) (matched []T) {
 	if err == nil {
 		return nil
