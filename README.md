@@ -50,8 +50,6 @@ For this reason, this package provides the following functionality to retrieve e
 Scan[T any](err error, targetT) []T
 ```
 
-`Scan()` could be done a little better, function form is a little bit less smart.
-
 ## Example
 
 ExactlyIs

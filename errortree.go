@@ -92,7 +92,7 @@ func ExactlyIs(err error, target error) bool {
 // An error matches target if the err's concrete value is assignable to the value
 // pointed to by target.
 //
-// Scan panics if target is not implements error, or to any interface type.
+// Scan panics if target is not implements error, or is not any interface type.
 //
 // Note target parameter accepts an interface, so setting `interface{}` or `any` to
 // target will match all nodes!
