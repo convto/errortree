@@ -112,6 +112,10 @@ func Scan[T any](err error, target T) (matched []T) {
 			if v, ok := err.(T); ok {
 				matched = append(matched, v)
 			}
+		} else if x, ok := err.(interface{ As(any) bool }); ok && x.As(target) {
+			if v, ok := err.(T); ok {
+				matched = append(matched, v)
+			}
 		}
 		switch x := err.(type) {
 		case interface{ Unwrap() error }:
